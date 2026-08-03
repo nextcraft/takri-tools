@@ -241,7 +241,7 @@ export default function CharacterReference() {
     >
       <div className="ref-container">
         <header className="ref-header">
-          <h1>𑚃𑚭𑚦𑚯 · Character Reference</h1>
+          <h1>𑚦𑚤𑚶𑚘 𑚨𑚫𑚛𑚤𑚶𑚡 · Character Reference</h1>
           <p>Browse the complete Takri Unicode block (U+11680–U+116CF) with Devanagari equivalents</p>
         </header>
 

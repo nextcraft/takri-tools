@@ -54,7 +54,7 @@ export default function Home() {
               to="/character-reference"
               icon="📖"
               title="Character Reference"
-              takriTitle="𑚃𑚭𑚦𑚯"
+              takriTitle="𑚦𑚤𑚶𑚘 𑚨𑚫𑚛𑚤𑚶𑚡"
               description="Browse the complete Takri Unicode alphabet with Devanagari equivalents, search, and one-click copy."
               status="live"
             />
