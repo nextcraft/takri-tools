@@ -50,6 +50,14 @@ export default function Home() {
               description="Generate printable PDF worksheets for learning to write Takri characters with Devanagari associations and guided practice rows."
               status="live"
             />
+            <ToolCard
+              to="/character-reference"
+              icon="📖"
+              title="Character Reference"
+              takriTitle="𑚃𑚭𑚦𑚯"
+              description="Browse the complete Takri Unicode alphabet with Devanagari equivalents, search, and one-click copy."
+              status="live"
+            />
           </div>
         </div>
       </motion.section>

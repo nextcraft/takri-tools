@@ -154,6 +154,40 @@ export const ALL_CHARACTERS = [
   ...SPECIAL_CONSONANTS,
 ];
 
+// ============================================================
+// CHARACTER REFERENCE — structured sections for the explorer UI
+// ============================================================
+
+export const REFERENCE_SECTIONS = [
+  { id: 'vowels', label: 'Vowels', chars: VOWELS },
+  { id: 'vowel-signs', label: 'Vowel Signs', chars: VOWEL_SIGNS },
+  ...CONSONANT_GROUPS.map(g => ({
+    id: g.nameShort,
+    label: g.name,
+    chars: g.consonants,
+  })),
+  { id: 'special', label: 'Special Consonants', chars: SPECIAL_CONSONANTS },
+  { id: 'signs', label: 'Signs', chars: Object.values(SIGNS) },
+  { id: 'symbols', label: 'Symbols', chars: Object.values(SYMBOLS) },
+  {
+    id: 'numerals',
+    label: 'Numerals',
+    chars: NUMERALS.map(n => ({
+      ...n,
+      roman: String(n.value),
+      name: `Digit ${n.value}`,
+    })),
+  },
+];
+
+export const ALL_REFERENCE_CHARS = REFERENCE_SECTIONS.flatMap(section =>
+  section.chars.map(char => ({
+    ...char,
+    sectionId: section.id,
+    sectionLabel: section.label,
+  })),
+);
+
 
 // ============================================================
 // TRANSLITERATION ENGINE MAPPINGS

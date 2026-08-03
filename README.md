@@ -20,6 +20,7 @@ This project aims to create practical digital tools that make it easier to produ
 |------|--------|-------------|
 | ⚡ **[Transliterator](#transliterator)** | ✅ Live | Type Roman text → see Devanagari & Takri side by side |
 | 📝 **[Practice Sheets](#practice-sheets)** | ✅ Live | Generate printable PDF worksheets for learning Takri alphabet |
+| 📖 **[Character Reference](#character-reference)** | ✅ Live | Browse the full Takri Unicode block with search and copy |
 | | 🔲 Planned | More tools coming — contributions welcome! |
 
 ### Transliterator
@@ -40,6 +41,16 @@ Generate **printable PDF worksheets** for learning to write Takri characters:
 - Choose display mode (Takri only, Takri + Devanagari, Takri + Devanagari + Roman)
 - Live preview before downloading
 - Supports A4 and Letter paper sizes
+
+### Character Reference
+
+Browse the **complete Takri Unicode block** (U+11680–U+116CF) in an interactive chart:
+
+- Search by Roman transliteration, Devanagari, Takri glyph, name, or Unicode code point
+- Filter by category (vowels, consonant rows, signs, numerals, and more)
+- Click any character for a detail view with copy-to-clipboard for Takri, Devanagari, and Unicode
+- Deep-link to any character via URL query param (e.g. `#/character-reference?char=1168A`)
+- Link to the official Unicode chart PDF
 
 ---
 
