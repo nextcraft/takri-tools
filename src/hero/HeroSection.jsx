@@ -3,7 +3,8 @@ import ParticleCanvas from './ParticleCanvas';
 import FloatingChars from './FloatingChars';
 import './HeroSection.css';
 
-const titleChars = '𑚔𑚭𑚊𑚤𑚯'.split('');
+// Spread (not .split('')) so Takri code points outside the BMP stay intact
+const titleChars = [...'𑚔𑚭𑚊𑚤𑚯'];
 
 const containerVariants = {
   hidden: {},
