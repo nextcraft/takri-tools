@@ -2,20 +2,13 @@ import { useState, useMemo, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { REFERENCE_SECTIONS, ALL_REFERENCE_CHARS } from '../data/takri-mappings';
+import { showToast } from '../lib/script-utils';
 import './CharacterReference.css';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
-
-function showToast(message) {
-  const toast = document.getElementById('toast');
-  if (!toast) return;
-  toast.textContent = message;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2500);
-}
 
 function matchesSearch(char, query) {
   const q = query.toLowerCase().trim();

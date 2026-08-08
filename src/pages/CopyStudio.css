@@ -1,0 +1,1532 @@
+/* ========================================
+   Copy Studio
+   ======================================== */
+
+.copy-studio-page {
+  --cs-rail-w-collapsed: 56px;
+  --cs-rail-w-expanded: 220px;
+  --cs-rail-w: var(--cs-rail-w-collapsed);
+  --cs-header-h: 48px;
+  --cs-footer-h: 44px;
+  --cs-nav-h: 80px;
+  /* Brighter text within Copy Studio scope */
+  --cs-text-secondary: #b4b4c8;
+  --cs-text-muted: #787894;
+
+  padding-top: var(--cs-nav-h);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+}
+
+.copy-studio-page.rail-expanded {
+  --cs-rail-w: var(--cs-rail-w-expanded);
+}
+
+/* --- Compact studio header --- */
+.cs-header {
+  position: fixed;
+  top: var(--cs-nav-h);
+  left: var(--cs-rail-w);
+  right: 0;
+  z-index: 30;
+  height: var(--cs-header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: var(--bg-glass-strong);
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+  transition: left var(--transition-normal);
+}
+
+.cs-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cs-header-mark {
+  font-family: var(--font-script-tak);
+  font-size: 1.4rem;
+  color: var(--accent-primary);
+  line-height: 1;
+}
+
+.cs-header h1 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.cs-header-tag {
+  font-size: 0.68rem;
+  color: var(--cs-text-muted);
+  margin: 0;
+}
+
+.cs-header-hint {
+  display: flex;
+  gap: 6px;
+}
+
+.cs-header-tool-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-glow);
+  border: 1px solid var(--border-accent);
+  color: var(--accent-primary);
+}
+
+/* --- Photoshop-style tools rail --- */
+.cs-tools-rail {
+  position: fixed;
+  top: var(--cs-nav-h);
+  bottom: var(--cs-footer-h);
+  left: 0;
+  width: var(--cs-rail-w);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: width var(--transition-normal);
+}
+
+.cs-rail-scroll {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 8px 0;
+  gap: 4px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.cs-rail-group {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  position: relative;
+  width: 100%;
+  padding: 0 8px;
+}
+
+.cs-tools-rail:not(.cs-tools-rail--expanded) .cs-rail-group {
+  align-items: center;
+  padding: 0 6px;
+}
+
+.cs-rail-section-title {
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cs-text-muted);
+  padding: 2px 8px 4px;
+  margin-bottom: 2px;
+}
+
+.cs-rail-group-label {
+  font-size: 0.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cs-text-muted);
+  margin-bottom: 2px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  height: 28px;
+  align-self: center;
+}
+
+.cs-rail-divider {
+  width: calc(100% - 16px);
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 4px auto;
+  flex-shrink: 0;
+}
+
+.cs-tools-rail:not(.cs-tools-rail--expanded) .cs-rail-divider {
+  width: 28px;
+}
+
+.cs-rail-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--cs-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  align-self: center;
+}
+
+.cs-rail-btn--expanded {
+  width: 100%;
+  height: auto;
+  min-height: 36px;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 6px 8px;
+  align-self: stretch;
+}
+
+.cs-rail-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.cs-rail-btn-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.cs-rail-script-icon {
+  font-size: 1rem;
+  line-height: 1;
+  font-family: var(--font-script-tak);
+}
+
+.cs-rail-btn-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  min-width: 0;
+  text-align: left;
+}
+
+.cs-rail-btn-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.cs-rail-btn-desc {
+  font-size: 0.62rem;
+  color: var(--cs-text-muted);
+  line-height: 1.25;
+}
+
+.cs-rail-btn:hover:not(:disabled) {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+  border-color: var(--border-medium);
+}
+
+.cs-rail-btn.active {
+  background: var(--accent-glow-strong);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: inset 0 0 0 1px var(--border-accent);
+}
+
+.cs-rail-btn.active .cs-rail-btn-label {
+  color: var(--accent-primary);
+}
+
+.cs-rail-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.cs-rail-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #4ade80;
+  margin-top: 2px;
+  align-self: center;
+  box-shadow: 0 0 4px rgba(74, 222, 128, 0.5);
+}
+
+.cs-tools-rail--expanded .cs-rail-status-dot {
+  margin-top: 4px;
+  margin-left: 8px;
+  align-self: flex-start;
+}
+
+.cs-rail-status-dot.offline {
+  background: var(--accent-primary);
+  box-shadow: 0 0 4px rgba(240, 165, 0, 0.5);
+}
+
+.cs-rail-status-dot.error {
+  background: #f87171;
+  box-shadow: 0 0 4px rgba(248, 113, 113, 0.5);
+}
+
+/* Preview size — expanded inline */
+.cs-rail-size-expanded {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px 8px;
+}
+
+.cs-rail-size-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-slider {
+  accent-color: var(--accent-primary);
+}
+
+.cs-slider--rail {
+  width: 100%;
+}
+
+.cs-slider--vertical {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 24px;
+  height: 100px;
+}
+
+/* Size flyout (collapsed mode) */
+.cs-rail-group--size {
+  position: relative;
+}
+
+.cs-size-flyout {
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  z-index: 50;
+  min-width: 56px;
+}
+
+.cs-size-flyout-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cs-text-secondary);
+}
+
+.cs-size-flyout-value {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
+/* Rail expand/collapse toggle */
+.cs-rail-bottom {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.cs-rail-clear-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--cs-text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cs-rail-clear-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.cs-rail-clear-icon:hover:not(:disabled) {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+}
+
+.cs-rail-clear-icon:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.cs-rail-btn--destructive:hover:not(:disabled) {
+  border-color: rgba(248, 113, 113, 0.45);
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+}
+
+.cs-rail-btn--destructive:hover:not(:disabled) .cs-rail-btn-label {
+  color: #f87171;
+}
+
+.cs-rail-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 100%;
+  height: 32px;
+  padding: 0;
+  background: var(--bg-glass);
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--cs-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cs-rail-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+.cs-rail-toggle:hover {
+  background: var(--bg-glass-hover);
+  color: var(--accent-primary);
+}
+
+/* --- Body + scrollable content --- */
+.cs-body {
+  flex: 1;
+  min-height: 0;
+  margin-left: var(--cs-rail-w);
+  margin-top: var(--cs-header-h);
+  transition: margin-left var(--transition-normal);
+}
+
+.cs-content {
+  height: calc(100vh - var(--cs-nav-h) - var(--cs-header-h) - var(--cs-footer-h));
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px 28px 32px;
+  scrollbar-color: var(--border-medium) transparent;
+}
+
+.cs-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cs-content::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 3px;
+}
+
+.cs-section {
+  margin-bottom: 28px;
+}
+
+.cs-section-label {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--cs-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.cs-section-sublabel {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--cs-text-muted);
+  font-size: 0.68rem;
+}
+
+.cs-compose {
+  width: 100%;
+  min-height: 130px;
+  padding: 14px 16px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  resize: vertical;
+  transition: border-color var(--transition-fast);
+}
+
+.cs-compose:focus {
+  outline: none;
+  border-color: var(--border-accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.cs-compose::placeholder {
+  color: var(--cs-text-muted);
+}
+
+.cs-empty-hint {
+  font-size: 0.82rem;
+  color: var(--cs-text-muted);
+  margin-top: 10px;
+}
+
+/* --- Interactive preview --- */
+.cs-preview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.cs-preview-panel {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.cs-preview-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--cs-text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cs-preview-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.cs-preview-panel.devanagari .cs-preview-dot {
+  background: var(--devanagari-color);
+}
+
+.cs-preview-panel.takri .cs-preview-dot {
+  background: var(--takri-color);
+}
+
+.cs-preview-body {
+  padding: 20px 16px;
+  line-height: 1.55;
+  word-break: break-word;
+  min-height: 72px;
+}
+
+.devanagari-body {
+  font-family: var(--font-script-dev);
+  color: var(--devanagari-color);
+}
+
+.takri-body {
+  font-family: var(--font-script-tak);
+  color: var(--takri-color);
+}
+
+.cs-placeholder {
+  color: var(--cs-text-muted);
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+}
+
+.cs-interactive-preview--sentence {
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.cs-interactive-preview--sentence:hover {
+  background: var(--accent-glow);
+}
+
+.cs-preview-line {
+  margin-bottom: 0.15em;
+}
+
+.cs-preview-line--clickable {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 2px 4px;
+  margin-left: -4px;
+  margin-right: -4px;
+  transition: background 0.15s ease;
+}
+
+.cs-preview-line--clickable:hover {
+  background: var(--accent-glow-strong);
+}
+
+.cs-preview-line.copied {
+  background: rgba(74, 222, 128, 0.12);
+}
+
+.cs-preview-word-btn {
+  background: none;
+  border: none;
+  padding: 1px 2px;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  border-radius: 3px;
+  cursor: default;
+}
+
+.cs-preview-word-btn--active {
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.cs-preview-word-btn--active:hover {
+  background: var(--accent-glow-strong);
+}
+
+.cs-preview-word-btn.copied {
+  background: rgba(74, 222, 128, 0.2);
+}
+
+.cs-preview-grapheme {
+  background: none;
+  border: none;
+  padding: 1px 1px;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.cs-preview-grapheme:hover {
+  background: var(--accent-glow-strong);
+}
+
+.cs-preview-grapheme.copied {
+  background: rgba(74, 222, 128, 0.2);
+}
+
+.cs-preview-word {
+  display: inline;
+}
+
+/* --- Word workspace --- */
+.cs-workspace-empty {
+  padding: 36px;
+  text-align: center;
+  color: var(--cs-text-muted);
+  background: var(--bg-glass);
+  border: 1px dashed var(--border-medium);
+  border-radius: var(--radius-md);
+}
+
+.cs-word-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cs-word-line {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background 0.15s ease;
+}
+
+.cs-word-line:hover {
+  border-color: var(--border-medium);
+}
+
+.cs-word-line.active {
+  border-color: var(--border-accent);
+  box-shadow: 0 0 0 1px var(--accent-glow);
+}
+
+.cs-word-line--copyable:hover {
+  background: var(--accent-glow);
+}
+
+.cs-word-line.copied {
+  border-color: #4ade80;
+  background: rgba(74, 222, 128, 0.06);
+}
+
+.cs-line-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cs-line-num {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--cs-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cs-line-empty {
+  height: 4px;
+}
+
+.cs-word-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cs-word-chip-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cs-word-chip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px 8px;
+  min-width: 80px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.cs-word-chip:hover {
+  border-color: var(--border-accent);
+  background: var(--bg-glass-hover);
+}
+
+.cs-word-chip.expanded {
+  border-color: var(--accent-primary);
+}
+
+.cs-word-chip.copied {
+  border-color: #4ade80;
+  background: rgba(74, 222, 128, 0.08);
+}
+
+.cs-word-chip--char-mode:hover {
+  border-color: var(--accent-primary);
+}
+
+.cs-chip-takri {
+  font-family: var(--font-script-tak);
+  font-size: 1.45rem;
+  color: var(--takri-color);
+  line-height: 1.2;
+}
+
+.cs-chip-roman {
+  font-size: 0.65rem;
+  color: var(--cs-text-muted);
+}
+
+.cs-chip-edit {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: var(--bg-glass-strong);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--cs-text-muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.15s ease;
+}
+
+.cs-chip-edit svg {
+  width: 11px;
+  height: 11px;
+}
+
+.cs-word-chip:hover .cs-chip-edit {
+  opacity: 1;
+}
+
+.cs-chip-edit:hover {
+  color: var(--accent-primary);
+  border-color: var(--border-accent);
+}
+
+.cs-expanded-word {
+  overflow: hidden;
+  padding: 2px 0 0;
+}
+
+.cs-grapheme-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.cs-grapheme-btn {
+  font-size: 1.05rem;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: 5px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cs-grapheme-btn.takri {
+  font-family: var(--font-script-tak);
+  color: var(--takri-color);
+}
+
+.cs-grapheme-btn.devanagari {
+  font-family: var(--font-script-dev);
+  color: var(--devanagari-color);
+}
+
+.cs-grapheme-btn:hover {
+  border-color: var(--accent-primary);
+  background: var(--accent-glow);
+}
+
+.cs-grapheme-btn.copied {
+  border-color: #4ade80;
+  background: rgba(74, 222, 128, 0.12);
+}
+
+/* --- Fixed footer --- */
+.cs-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  height: var(--cs-footer-h);
+  display: flex;
+  align-items: center;
+  background: var(--bg-glass-strong);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border-subtle);
+  padding: 0 20px 0 calc(var(--cs-rail-w) + 12px);
+  transition: padding-left var(--transition-normal);
+}
+
+.cs-footer-stats {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.cs-stat {
+  font-size: 0.72rem;
+  color: var(--cs-text-secondary);
+  white-space: nowrap;
+}
+
+.cs-stat strong {
+  color: var(--accent-primary);
+  font-weight: 700;
+  margin-right: 3px;
+}
+
+.cs-stat--tool strong {
+  color: var(--text-primary);
+}
+
+.cs-stat--last {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cs-stat--last em {
+  font-style: normal;
+  color: #4ade80;
+  font-family: var(--font-script-tak);
+}
+
+/* --- Copy Stack toggle (footer) --- */
+.cs-footer-stack-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  flex-shrink: 0;
+  height: 28px;
+  padding: 0 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  color: var(--cs-text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cs-footer-stack-btn svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.cs-footer-stack-btn:hover {
+  background: var(--accent-glow-strong);
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.cs-footer-stack-btn.open {
+  background: var(--accent-glow-strong);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.cs-footer-stack-btn-label {
+  letter-spacing: 0.02em;
+}
+
+.cs-footer-stack-btn-badge {
+  min-width: 18px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* --- Copy Stack panel --- */
+.cs-stack-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(2px);
+}
+
+.cs-stack-panel {
+  position: fixed;
+  bottom: var(--cs-footer-h);
+  left: var(--cs-rail-w);
+  right: 0;
+  z-index: 80;
+  max-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-glass-strong);
+  border-top: 1px solid var(--border-accent);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+  transition: left var(--transition-normal);
+}
+
+.cs-stack-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.cs-stack-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cs-stack-header-title h2 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.cs-stack-header-count {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--accent-glow);
+  border: 1px solid var(--border-accent);
+  color: var(--accent-primary);
+}
+
+.cs-stack-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-stack-clear-btn {
+  padding: 5px 10px;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--cs-text-secondary);
+  font-size: 0.72rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cs-stack-clear-btn:hover {
+  border-color: #f87171;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+}
+
+.cs-stack-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--cs-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cs-stack-close-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.cs-stack-close-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-medium);
+}
+
+.cs-stack-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px 12px 12px;
+  scrollbar-color: var(--border-medium) transparent;
+}
+
+.cs-stack-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cs-stack-list::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 3px;
+}
+
+.cs-stack-empty {
+  padding: 28px 16px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--cs-text-muted);
+}
+
+.cs-stack-item-wrap {
+  position: relative;
+}
+
+.cs-stack-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-body);
+}
+
+.cs-stack-item:hover {
+  border-color: var(--border-accent);
+  background: var(--bg-glass-hover);
+  box-shadow: 0 0 0 1px var(--accent-glow);
+}
+
+.cs-stack-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.cs-stack-script-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.cs-stack-script-badge.takri {
+  background: rgba(240, 165, 0, 0.12);
+  border-color: rgba(240, 165, 0, 0.35);
+  color: var(--takri-color);
+}
+
+.cs-stack-script-badge.devanagari {
+  background: rgba(147, 197, 253, 0.1);
+  border-color: rgba(147, 197, 253, 0.35);
+  color: var(--devanagari-color);
+}
+
+.cs-stack-script-badge.roman {
+  background: rgba(180, 180, 200, 0.1);
+  border-color: rgba(180, 180, 200, 0.35);
+  color: var(--cs-text-secondary);
+}
+
+.cs-stack-script-icon {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.cs-stack-script-badge.takri .cs-stack-script-icon {
+  font-family: var(--font-script-tak);
+}
+
+.cs-stack-script-badge.devanagari .cs-stack-script-icon {
+  font-family: var(--font-script-dev);
+}
+
+.cs-stack-granularity-pill {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--cs-text-muted);
+}
+
+.cs-stack-time {
+  font-size: 0.65rem;
+  color: var(--cs-text-muted);
+  margin-left: auto;
+}
+
+.cs-stack-item-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cs-stack-item-text {
+  font-size: 1.05rem;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.cs-stack-item-text.takri {
+  font-family: var(--font-script-tak);
+  color: var(--takri-color);
+}
+
+.cs-stack-item-text.devanagari {
+  font-family: var(--font-script-dev);
+  color: var(--devanagari-color);
+}
+
+.cs-stack-item-text.roman {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+}
+
+.cs-stack-roman-hint {
+  font-size: 0.68rem;
+  color: var(--cs-text-muted);
+  font-family: var(--font-body);
+}
+
+.cs-stack-preview-popover {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: calc(100% + 6px);
+  z-index: 90;
+  padding: 12px 14px;
+  max-width: 400px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.cs-stack-preview-text.takri {
+  font-family: var(--font-script-tak);
+  color: var(--takri-color);
+}
+
+.cs-stack-preview-text.devanagari {
+  font-family: var(--font-script-dev);
+  color: var(--devanagari-color);
+}
+
+.cs-stack-preview-text.roman {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+}
+
+/* --- Modal --- */
+.cs-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.cs-modal {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow-lg);
+}
+
+.cs-modal-title {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.cs-modal-message {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--cs-text-secondary);
+  margin-bottom: 20px;
+}
+
+.cs-modal-label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--cs-text-secondary);
+  margin-bottom: 6px;
+}
+
+.cs-modal-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+}
+
+.cs-modal-input:focus {
+  outline: none;
+  border-color: var(--border-accent);
+}
+
+.cs-modal-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 12px;
+  background: var(--bg-glass);
+  border-radius: var(--radius-sm);
+}
+
+.cs-modal-preview-label {
+  font-size: 0.65rem;
+  color: var(--cs-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cs-modal-preview-takri {
+  font-family: var(--font-script-tak);
+  font-size: 1.5rem;
+  color: var(--takri-color);
+}
+
+.cs-modal-preview-dev {
+  font-family: var(--font-script-dev);
+  font-size: 1.2rem;
+  color: var(--devanagari-color);
+}
+
+.cs-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.cs-btn {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cs-btn:hover:not(:disabled) {
+  border-color: var(--border-accent);
+}
+
+.cs-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cs-btn--primary {
+  background: var(--accent-glow-strong);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.cs-btn--ghost {
+  background: transparent;
+}
+
+.cs-btn--destructive {
+  background: rgba(248, 113, 113, 0.1);
+  border-color: rgba(248, 113, 113, 0.45);
+  color: #f87171;
+  font-weight: 600;
+}
+
+.cs-btn--destructive:hover:not(:disabled) {
+  background: rgba(248, 113, 113, 0.18);
+  border-color: #f87171;
+  color: #fca5a5;
+}
+
+/* --- Mobile: horizontal tool strip --- */
+@media (max-width: 900px) {
+  .copy-studio-page {
+    --cs-rail-w: 0px;
+    --cs-header-h: 44px;
+  }
+
+  .copy-studio-page.rail-expanded {
+    --cs-rail-w: 0px;
+  }
+
+  .cs-header {
+    left: 0;
+    padding: 0 12px;
+  }
+
+  .cs-header-hint {
+    display: none;
+  }
+
+  .cs-tools-rail {
+    top: calc(var(--cs-nav-h) + var(--cs-header-h));
+    bottom: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .cs-rail-scroll {
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 8px;
+    gap: 0;
+  }
+
+  .cs-rail-group {
+    flex-direction: row;
+    width: auto;
+    padding: 0 4px;
+    flex-shrink: 0;
+    align-items: center;
+  }
+
+  .cs-rail-section-title,
+  .cs-rail-group-label {
+    writing-mode: horizontal-tb;
+    transform: none;
+    height: auto;
+    margin: 0 4px 0 0;
+    font-size: 0.55rem;
+  }
+
+  .cs-rail-btn--expanded {
+    width: auto;
+    min-width: 36px;
+    padding: 6px;
+  }
+
+  .cs-rail-btn-text {
+    display: none;
+  }
+
+  .cs-rail-size-expanded {
+    display: none;
+  }
+
+  .cs-rail-divider {
+    width: 1px;
+    height: 28px;
+    margin: 0 4px;
+  }
+
+  .cs-rail-status-dot {
+    margin-top: 0;
+    margin-left: 2px;
+    align-self: center;
+  }
+
+  .cs-rail-toggle {
+    display: none;
+  }
+
+  .cs-rail-bottom {
+    display: none;
+  }
+
+  .cs-size-flyout {
+    left: 50%;
+    top: calc(100% + 8px);
+    transform: translateX(-50%);
+    flex-direction: row;
+    padding: 10px 14px;
+  }
+
+  .cs-slider--vertical {
+    writing-mode: horizontal-tb;
+    direction: ltr;
+    width: 100px;
+    height: auto;
+  }
+
+  .cs-body {
+    margin-left: 0;
+    margin-top: calc(var(--cs-header-h) + 48px);
+  }
+
+  .cs-content {
+    height: calc(100vh - var(--cs-nav-h) - var(--cs-header-h) - 48px - var(--cs-footer-h));
+    padding: 16px 14px 24px;
+  }
+
+  .cs-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-footer {
+    padding: 0 12px;
+  }
+
+  .cs-stat--last {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+
+  .cs-footer-stack-btn {
+    margin-left: 0;
+    font-size: 0.72rem;
+    height: 26px;
+    padding: 0 8px;
+  }
+
+  .cs-stack-panel {
+    left: 0;
+    max-height: 50vh;
+  }
+
+  .cs-stack-preview-popover {
+    max-width: none;
+    left: 8px;
+    right: 8px;
+  }
+}

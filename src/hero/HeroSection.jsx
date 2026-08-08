@@ -1,19 +1,8 @@
 import { motion } from 'framer-motion';
 import ParticleCanvas from './ParticleCanvas';
 import FloatingChars from './FloatingChars';
+import { graphemes } from '../lib/script-utils';
 import './HeroSection.css';
-
-// Split by grapheme clusters (not code points) so Takri base+matra
-// units like 𑚔𑚭 and 𑚤𑚯 stay intact — same rule as Devanagari.
-function graphemes(text) {
-  if (typeof Intl !== 'undefined' && Intl.Segmenter) {
-    return [...new Intl.Segmenter('und-Takr', { granularity: 'grapheme' }).segment(text)].map(
-      (s) => s.segment
-    );
-  }
-  // Fallback: hard-coded orthographic clusters for this title
-  return ['𑚔𑚭', '𑚊', '𑚤𑚯'];
-}
 
 const titleChars = graphemes('𑚔𑚭𑚊𑚤𑚯');
 

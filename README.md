@@ -21,6 +21,7 @@ This project aims to create practical digital tools that make it easier to produ
 | ⚡ **[Transliterator](#transliterator)** | ✅ Live | Type Roman text → see Devanagari & Takri side by side |
 | 📝 **[Practice Sheets](#practice-sheets)** | ✅ Live | Generate printable PDF worksheets for learning Takri alphabet |
 | 📖 **[Character Reference](#character-reference)** | ✅ Live | Browse the full Takri Unicode block with search and copy |
+| 📋 **[Copy Studio](#copy-studio)** | ✅ Live | Compose Takri text for design tools — per-word edit, granular copy, PNG export |
 | | 🔲 Planned | More tools coming — contributions welcome! |
 
 ### Transliterator
@@ -51,6 +52,16 @@ Browse the **complete Takri Unicode block** (U+11680–U+116CF) in an interactiv
 - Click any character for a detail view with copy-to-clipboard for Takri, Devanagari, and Unicode
 - Deep-link to any character via URL query param (e.g. `#/character-reference?char=1168A`)
 - Link to the official Unicode chart PDF
+
+### Copy Studio
+
+A **staging workspace** for design tools like Canva and Adobe Express:
+
+- Type multi-line Roman text with instant Devanagari and Takri preview at adjustable size (24–96px)
+- Edit individual words without retyping the whole sentence
+- Copy at sentence, line, word, or grapheme granularity (grapheme-safe via `Intl.Segmenter`)
+- Download PNG renders of words or lines when live text paste fails (Noto Sans Takri)
+- Offline engine for instant feedback + optional API refinement for complex conjuncts
 
 ---
 

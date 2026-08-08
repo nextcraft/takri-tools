@@ -58,6 +58,14 @@ export default function Home() {
               description="Browse the complete Takri Unicode alphabet with Devanagari equivalents, search, and one-click copy."
               status="live"
             />
+            <ToolCard
+              to="/copy-studio"
+              icon="📋"
+              title="Copy Studio"
+              takriTitle="𑚔𑚭𑚊𑚤𑚯"
+              description="Compose Takri text for Canva and Express. Edit words individually, copy sentence/line/word/character, or export PNG when fonts break."
+              status="live"
+            />
           </div>
         </div>
       </motion.section>
