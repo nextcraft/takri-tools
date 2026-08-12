@@ -1,0 +1,158 @@
+.trainer-results {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.trainer-results-title {
+  font-size: 1.85rem;
+  font-weight: 900;
+  margin-bottom: 8px;
+  color: #fff;
+  text-shadow: 0 2px 0 var(--game-ink, #1a1028);
+}
+
+.trainer-results-title::after {
+  content: ' 🎉';
+}
+
+.trainer-results-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.trainer-stat-card {
+  background: var(--game-cream, #fff8f0);
+  border: 3px solid var(--game-ink, #1a1028);
+  border-radius: 16px;
+  padding: 18px 14px;
+  box-shadow: 0 5px 0 var(--game-ink, #1a1028);
+}
+
+.trainer-stat-card--hero {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #fde68a, #f9a8d4, #c4b5fd);
+}
+
+.trainer-stat-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--game-ink, #1a1028);
+  line-height: 1.1;
+}
+
+.trainer-stat-card--hero .trainer-stat-value {
+  font-size: 3rem;
+}
+
+.trainer-stat-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+}
+
+.trainer-results-record {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 24px;
+}
+
+.trainer-weak-section {
+  text-align: left;
+  margin-bottom: 24px;
+  padding: 18px;
+  background: var(--game-cream, #fff8f0);
+  border: 3px solid var(--game-ink, #1a1028);
+  border-radius: 18px;
+  box-shadow: 0 6px 0 var(--game-ink, #1a1028);
+}
+
+.trainer-weak-section h3 {
+  font-size: 0.9rem;
+  font-weight: 900;
+  margin-bottom: 12px;
+  color: var(--game-ink, #1a1028);
+}
+
+.trainer-weak-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.trainer-weak-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+  text-align: left;
+}
+
+.trainer-weak-item:hover {
+  border-color: var(--game-purple, #a855f7);
+  transform: translateX(2px);
+}
+
+.trainer-weak-takri {
+  font-family: var(--font-script-tak);
+  font-size: 1.5rem;
+  color: #7c3aed;
+  min-width: 2rem;
+}
+
+.trainer-weak-dev {
+  font-family: var(--font-script-dev);
+  font-size: 1.1rem;
+  color: #db2777;
+}
+
+.trainer-weak-roman {
+  margin-left: auto;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.trainer-results-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trainer-btn--secondary {
+  width: 100%;
+  background: #fff;
+  color: var(--game-ink, #1a1028);
+}
+
+.trainer-btn--ghost {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: none;
+}
+
+.trainer-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.trainer-btn--ghost:active {
+  box-shadow: none;
+}

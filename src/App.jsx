@@ -5,6 +5,8 @@ import Transliterator from './pages/Transliterator';
 import PracticeSheets from './pages/PracticeSheets';
 import CharacterReference from './pages/CharacterReference';
 import CopyStudio from './pages/CopyStudio';
+import TakriReader from './pages/TakriReader';
+import GlyphTrainer from './pages/GlyphTrainer';
 
 export default function App() {
   return (
@@ -15,6 +17,8 @@ export default function App() {
         <Route path="practice-sheets" element={<PracticeSheets />} />
         <Route path="character-reference" element={<CharacterReference />} />
         <Route path="copy-studio" element={<CopyStudio />} />
+        <Route path="reader" element={<TakriReader />} />
+        <Route path="trainer" element={<GlyphTrainer />} />
       </Route>
     </Routes>
   );

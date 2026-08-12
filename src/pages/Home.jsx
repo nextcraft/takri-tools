@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import HeroSection from '../hero/HeroSection';
 import ToolCard from '../components/ToolCard';
+import { TAKRI_SNAP_FORMAL_NAME, TAKRI_SNAP_TITLE_TAKRI } from '../data/takri-snap';
 import './Home.css';
 
 const sectionVariants = {
@@ -64,6 +65,22 @@ export default function Home() {
               title="Copy Studio"
               takriTitle="𑚔𑚭𑚊𑚤𑚯"
               description="Compose Takri text for Canva and Express. Edit words individually, copy sentence/line/word/character, or export PNG when fonts break."
+              status="live"
+            />
+            <ToolCard
+              to="/reader"
+              icon="📚"
+              title="Takri Reader"
+              takriTitle="𑚏𑚫𑚛𑚤"
+              description="Read Takri with Roman and Devanagari support. Browse curated Dogri and Kangri texts, or paste your own to decode word by word."
+              status="live"
+            />
+            <ToolCard
+              to="/trainer"
+              icon="🔥"
+              title={TAKRI_SNAP_FORMAL_NAME}
+              takriTitle={TAKRI_SNAP_TITLE_TAKRI}
+              description="Swipe to match Takri letters with Devanagari — YEP or NAH. Blitz mode with streak bonuses and extra time on hot runs."
               status="live"
             />
           </div>

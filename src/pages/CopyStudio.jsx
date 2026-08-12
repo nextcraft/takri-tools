@@ -1,4 +1,5 @@
-import { useState, useCallback, useMemo, useRef } from 'react';
+import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';
 import useCopyStudio from '../hooks/useCopyStudio';
 import { useCopyStack } from '../hooks/useCopyStack';
@@ -11,6 +12,7 @@ import {
   downloadPng,
   copyToClipboard,
 } from '../lib/script-utils';
+import { consumeCopyStudioImport, saveReaderImport } from '../lib/tool-bridge';
 import './CopyStudio.css';
 
 const TAKRI_FONT = "'Noto Sans Takri', sans-serif";
@@ -684,6 +686,7 @@ function ToolsRail({
 }
 
 export default function CopyStudio() {
+  const navigate = useNavigate();
   const {
     romanText,
     setRomanText,
@@ -713,6 +716,29 @@ export default function CopyStudio() {
   const [showClearConfirm, setShowClearConfirm] = useState(false);
 
   const { stack, pushCopy, clearStack, count: stackCount } = useCopyStack();
+
+  useEffect(() => {
+    const imported = consumeCopyStudioImport();
+    if (!imported) return;
+    if (imported.roman) setRomanText(imported.roman);
+    showToast(
+      imported.title
+        ? `Imported: ${imported.title}`
+        : 'Text imported from Takri Reader',
+    );
+  }, [setRomanText]);
+
+  const handleReadInReader = useCallback(() => {
+    if (!fullTakri.trim()) {
+      showToast('Generate Takri text first');
+      return;
+    }
+    saveReaderImport({
+      takri: fullTakri,
+      title: 'From Copy Studio',
+    });
+    navigate('/reader');
+  }, [fullTakri, navigate]);
 
   const hasContent = romanText.trim().length > 0;
   const scriptLabel = copyScript === 'takri' ? 'Takri' : 'Devanagari';
@@ -864,6 +890,11 @@ export default function CopyStudio() {
           </div>
         </div>
         <div className="cs-header-hint">
+          {fullTakri.trim() && (
+            <button type="button" className="cs-header-link-btn" onClick={handleReadInReader}>
+              Read in Reader
+            </button>
+          )}
           <span className="cs-header-tool-badge">{granularityLabel}</span>
           <span className="cs-header-tool-badge">{scriptLabel}</span>
         </div>

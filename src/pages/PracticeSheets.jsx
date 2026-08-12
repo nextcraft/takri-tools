@@ -1,9 +1,11 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { jsPDF } from 'jspdf';
 import {
   VOWELS, CONSONANT_GROUPS, NUMERALS, ALL_CONSONANTS,
 } from '../data/takri-mappings';
+import { showToast } from '../lib/script-utils';
+import { consumePracticeSheetsImport } from '../lib/tool-bridge';
 import './PracticeSheets.css';
 
 // ============================================================
@@ -216,6 +218,17 @@ export default function PracticeSheets() {
   const [displayMode, setDisplayMode] = useState('takri-dev-roman');
   const [paperSize, setPaperSize] = useState('a4');
   const [generating, setGenerating] = useState(false);
+
+  useEffect(() => {
+    const imported = consumePracticeSheetsImport();
+    if (!imported?.groupIds?.length) return;
+    setSelectedGroups(imported.groupIds);
+    showToast(
+      imported.title
+        ? `Loaded practice groups for: ${imported.title}`
+        : 'Character groups loaded from Reader',
+    );
+  }, []);
 
   const toggleGroup = useCallback((id) => {
     setSelectedGroups(prev =>

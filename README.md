@@ -22,7 +22,8 @@ This project aims to create practical digital tools that make it easier to produ
 | 📝 **[Practice Sheets](#practice-sheets)** | ✅ Live | Generate printable PDF worksheets for learning Takri alphabet |
 | 📖 **[Character Reference](#character-reference)** | ✅ Live | Browse the full Takri Unicode block with search and copy |
 | 📋 **[Copy Studio](#copy-studio)** | ✅ Live | Compose Takri text for design tools — per-word edit, granular copy, PNG export |
-| | 🔲 Planned | More tools coming — contributions welcome! |
+| 📚 **[Takri Reader](#takri-reader)** | ✅ Live | Read Takri with Roman & Devanagari — curated texts library and paste-to-decode |
+| 🔥 **[Takri Snap](#takri-snap)** | ✅ Live | Swipe game to match Takri with Devanagari — Blitz mode, streaks, and time bonuses |
 
 ### Transliterator
 
@@ -62,6 +63,34 @@ A **staging workspace** for design tools like Canva and Adobe Express:
 - Copy at sentence, line, word, or grapheme granularity (grapheme-safe via `Intl.Segmenter`)
 - Download PNG renders of words or lines when live text paste fails (Noto Sans Takri)
 - Offline engine for instant feedback + optional API refinement for complex conjuncts
+
+### Takri Reader
+
+Read **Takri text** with Roman and Devanagari support — the reverse of the Transliterator:
+
+- **Paste & Read**: Paste any Takri text and decode it word by word
+- **Sample Library**: 14 curated texts — greetings, proverbs, folk phrases, and practice sentences in Dogri and Kangri
+- **Reading Modes**: Study (tap to reveal), Guided (full translation below), Fluent (Takri only)
+- **Glossary panel**: Full word list with English meanings for library texts
+- **Library filters**: Category pills, difficulty, language, and search across titles and meanings
+- **API + Offline**: Aksharamukha reverse transliteration with offline Devanagari fallback
+- Deep links with reading mode (e.g. `#/reader?text=proverb-chaah-raah&mode=study`)
+- Share link button copies a permalink to any library text
+- **Granular copy**: sentence, line, word, or grapheme in Takri, Devanagari, or Roman
+- **Cross-tool links**: Copy Studio, Character Reference (per-grapheme), Practice Sheets (auto-selected groups)
+- Send text to Copy Studio for editing; open Copy Studio output back in Reader
+- Character Reference: “Read in Reader” and “Practice this character” from any glyph detail
+
+### Takri Snap
+
+A **Tinder-style swipe game** for learning Takri letter recognition:
+
+- **Play styles**: **Swipe** (YEP/NAH) or **Pick** (choose the matching Takri from two options)
+- **Blitz mode**: 45-second clock; streak multipliers boost score; every 5-streak earns +3 bonus seconds (cap 60s)
+- **Flow mode**: same cards with no timer — end when you’re ready
+- **Decks**: core letters, vowels, consonants, numerals; optional vowel signs & special consonants
+- **Results**: accuracy, best streak, weak-glyphs list with links to Character Reference and Practice Sheets
+- Progress saved in `localStorage` (best scores, per-glyph hit/miss stats)
 
 ---
 

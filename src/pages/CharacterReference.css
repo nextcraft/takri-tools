@@ -330,6 +330,30 @@
   background: var(--accent-glow);
 }
 
+.ref-detail-connect {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.ref-connect-btn {
+  background: var(--accent-glow);
+  border: 1px solid var(--border-accent);
+  color: var(--accent-primary);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.ref-connect-btn:hover {
+  background: var(--accent-glow-strong);
+}
+
 .ref-unicode-link {
   display: block;
   text-align: center;

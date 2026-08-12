@@ -1,0 +1,188 @@
+.swipe-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 22px 22px;
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 244, 230, 0.98) 45%, rgba(255, 230, 245, 0.96) 100%);
+  border: 3px solid #1a1028;
+  border-radius: 28px;
+  box-shadow:
+    0 18px 0 #1a1028,
+    0 28px 48px rgba(26, 16, 40, 0.35);
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+  overflow: hidden;
+}
+
+.swipe-card::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 2px dashed rgba(168, 85, 247, 0.25);
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.swipe-card--top {
+  z-index: 2;
+}
+
+.swipe-card--top:active {
+  cursor: grabbing;
+}
+
+.swipe-card--behind {
+  z-index: 1;
+  pointer-events: none;
+  filter: saturate(0.85);
+}
+
+.swipe-card--correct {
+  box-shadow:
+    0 18px 0 #166534,
+    0 0 0 3px #4ade80,
+    0 28px 48px rgba(74, 222, 128, 0.25);
+}
+
+.swipe-card--wrong {
+  box-shadow:
+    0 18px 0 #7f1d1d,
+    0 0 0 3px #f87171,
+    0 28px 48px rgba(248, 113, 113, 0.22);
+}
+
+.swipe-card-sparkle {
+  position: absolute;
+  font-size: 1.1rem;
+  opacity: 0.35;
+  pointer-events: none;
+  animation: sparkle-float 4s ease-in-out infinite;
+}
+
+.swipe-card-sparkle--a {
+  top: 18px;
+  right: 22px;
+  color: #ec4899;
+}
+
+.swipe-card-sparkle--b {
+  bottom: 56px;
+  left: 20px;
+  color: #8b5cf6;
+  animation-delay: -1.6s;
+}
+
+@keyframes sparkle-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(12deg); }
+}
+
+.swipe-card-vs {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #7c3aed;
+  background: #fff;
+  border: 2px solid #1a1028;
+  border-radius: 50%;
+  box-shadow: 0 3px 0 #1a1028;
+}
+
+.swipe-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+  justify-content: center;
+  gap: 0;
+  padding: 0 8px;
+}
+
+.swipe-card-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.swipe-card-prompt-tag,
+.swipe-card-claim-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.12);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.swipe-card-takri {
+  font-family: var(--font-script-tak);
+  font-size: clamp(4.2rem, 17vw, 6.5rem);
+  line-height: 1;
+  color: #6d28d9;
+  filter: drop-shadow(0 3px 0 rgba(109, 40, 217, 0.15));
+}
+
+.swipe-card-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.swipe-card-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(72%, 200px);
+  margin: 14px 0 12px;
+  flex-shrink: 0;
+}
+
+.swipe-card-divider-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.35), transparent);
+  border-radius: 1px;
+}
+
+.swipe-card-claim {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  max-width: 100%;
+  padding: 0 4px;
+}
+
+.swipe-card-claim-text {
+  font-size: clamp(1.75rem, 7vw, 2.6rem);
+  font-weight: 800;
+  color: #1f2937;
+  line-height: 1.2;
+  text-align: center;
+  word-break: break-word;
+}
+
+.swipe-card-claim-text--dev {
+  font-family: var(--font-script-dev);
+  color: #db2777;
+}

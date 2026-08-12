@@ -1,8 +1,10 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import { useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { REFERENCE_SECTIONS, ALL_REFERENCE_CHARS } from '../data/takri-mappings';
 import { showToast } from '../lib/script-utils';
+import { saveReaderImport, savePracticeSheetsImport } from '../lib/tool-bridge';
+import { TAKRI_SNAP_FORMAL_NAME } from '../data/takri-snap';
 import './CharacterReference.css';
 
 const fadeIn = {
@@ -50,6 +52,8 @@ function CharacterCard({ char, onClick }) {
 }
 
 function DetailPanel({ char, onClose }) {
+  const navigate = useNavigate();
+
   const handleCopy = useCallback(async (text, label) => {
     if (!text) return;
     try {
@@ -67,6 +71,31 @@ function DetailPanel({ char, onClose }) {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
+
+  const handleReadInReader = useCallback(() => {
+    saveReaderImport({ takri: char.takri, title: char.name });
+    navigate('/reader');
+    onClose();
+  }, [char.takri, char.name, navigate, onClose]);
+
+  const handlePracticeCharacter = useCallback(() => {
+    if (!char.sectionId) {
+      showToast('No practice group for this character');
+      return;
+    }
+    savePracticeSheetsImport({
+      groupIds: [char.sectionId],
+      title: char.name,
+    });
+    navigate('/practice-sheets');
+    onClose();
+  }, [char.sectionId, char.name, navigate, onClose]);
+
+  const handleTrainGlyph = useCallback(() => {
+    const params = char.sectionId ? `?group=${char.sectionId}` : '';
+    navigate(`/trainer${params}`);
+    onClose();
+  }, [char.sectionId, navigate, onClose]);
 
   return (
     <motion.div
@@ -130,6 +159,20 @@ function DetailPanel({ char, onClose }) {
               Copy Unicode
             </button>
           )}
+        </div>
+
+        <div className="ref-detail-connect">
+          <button type="button" className="ref-connect-btn" onClick={handleReadInReader}>
+            Read in Reader
+          </button>
+          {char.sectionId && (
+            <button type="button" className="ref-connect-btn" onClick={handlePracticeCharacter}>
+              Practice this character
+            </button>
+          )}
+          <button type="button" className="ref-connect-btn" onClick={handleTrainGlyph}>
+            Train in {TAKRI_SNAP_FORMAL_NAME}
+          </button>
         </div>
 
         <a
