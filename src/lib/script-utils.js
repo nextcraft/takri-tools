@@ -3,16 +3,7 @@
  * Defaults to Takri locale for conjunct-safe character boundaries.
  */
 export { COPY_STUDIO_IMPORT_KEY } from './tool-bridge';
-
-export function graphemes(text, locale = 'und-Takr') {
-  if (!text) return [];
-  if (typeof Intl !== 'undefined' && Intl.Segmenter) {
-    return [...new Intl.Segmenter(locale, { granularity: 'grapheme' }).segment(text)].map(
-      (s) => s.segment
-    );
-  }
-  return [...text];
-}
+export { graphemes } from '@nextcraft/takri';
 
 export function showToast(message) {
   const toast = document.getElementById('toast');

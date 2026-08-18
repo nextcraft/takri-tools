@@ -3,15 +3,20 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "workspaces": [
+    "packages/takri"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "npx gh-pages -d dist"
+    "deploy": "npx gh-pages -d dist",
+    "test": "npm test -w @nextcraft/takri"
   },
   "dependencies": {
+    "@nextcraft/takri": "*",
     "framer-motion": "^12.38.0",
     "jspdf": "^4.2.1",
     "react": "^19.2.8",

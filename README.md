@@ -24,6 +24,7 @@ This project aims to create practical digital tools that make it easier to produ
 | 📋 **[Copy Studio](#copy-studio)** | ✅ Live | Compose Takri text for design tools — per-word edit, granular copy, PNG export |
 | 📚 **[Takri Reader](#takri-reader)** | ✅ Live | Read Takri with Roman & Devanagari — curated texts library and paste-to-decode |
 | 🔥 **[Takri Snap](#takri-snap)** | ✅ Live | Swipe game to match Takri with Devanagari — Blitz mode, streaks, and time bonuses |
+| 🤖 **[Agents Kit](#agents-kit)** | ✅ Live | CLI, MCP, and skills for coding agents (`npx @nextcraft/takri`) |
 
 ### Transliterator
 

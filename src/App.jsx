@@ -7,6 +7,7 @@ import CharacterReference from './pages/CharacterReference';
 import CopyStudio from './pages/CopyStudio';
 import TakriReader from './pages/TakriReader';
 import GlyphTrainer from './pages/GlyphTrainer';
+import AgentsKit from './pages/AgentsKit';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="copy-studio" element={<CopyStudio />} />
         <Route path="reader" element={<TakriReader />} />
         <Route path="trainer" element={<GlyphTrainer />} />
+        <Route path="agents-kit" element={<AgentsKit />} />
       </Route>
     </Routes>
   );

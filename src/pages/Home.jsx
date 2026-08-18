@@ -83,6 +83,14 @@ export default function Home() {
               description="Swipe to match Takri letters with Devanagari — YEP or NAH. Blitz mode with streak bonuses and extra time on hot runs."
               status="live"
             />
+            <ToolCard
+              to="/agents-kit"
+              icon="🤖"
+              title="Agents Kit"
+              takriTitle="𑚔𑚭𑚊𑚤𑚯"
+              description="CLI, MCP, and skills so Cursor, Claude Code, Cline, OpenCode, Codex, and Kilo produce real Unicode Takri — never invented glyphs."
+              status="live"
+            />
           </div>
         </div>
       </motion.section>
